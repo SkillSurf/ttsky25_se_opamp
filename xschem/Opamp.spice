@@ -1,0 +1,95 @@
+** sch_path: /foss/designs/cmos_ota_sky130/2-stage-Opamp/Opamp.sch
+**.subckt Opamp Vn Ibias Vout VSS Vp VDD EN
+*.ipin Vn
+*.ipin Ibias
+*.ipin Vout
+*.ipin VSS
+*.ipin Vp
+*.ipin VDD
+*.ipin EN
+XM2 net2 Vp net4 GND sky130_fd_pr__nfet_01v8 L=1 W=2 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM4 net2 net1 net3 net3 sky130_fd_pr__pfet_01v8 L=1 W=2 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM3 net1 net1 net3 net3 sky130_fd_pr__pfet_01v8 L=1 W=2 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM1 net1 Vn net4 GND sky130_fd_pr__nfet_01v8 L=1 W=2 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM5 Vout net2 net3 net3 sky130_fd_pr__pfet_01v8 L=1 W=5 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM7 net4 Ibias VSS VSS sky130_fd_pr__nfet_01v8 L=1 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM8 Vout Ibias VSS VSS sky130_fd_pr__nfet_01v8 L=1 W=5 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM9 Ibias Ibias VSS VSS sky130_fd_pr__nfet_01v8 L=2 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM6 net3 net5 VDD VDD sky130_fd_pr__pfet_01v8 L=1 W=2 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+x1 net5 EN VDD GND not W_N=1 L_N=0.15 W_P=2 L_P=0.15 m=1
+XC2 net2 Vout sky130_fd_pr__cap_mim_m3_1 W=5 L=5 MF=4 m=4
+**** begin user architecture code
+
+
+.option temp=27
+*.option gmin=1e-12
+.param VCC=1.8
+
+vdd VDD 0 DC {VCC}
+vss VSS 0 0
+
+ven EN 0 DC{VCC}
+
+*vp Vp 0 DC 0
+*vn Vn 0 DC 0.9
+
+vp Vp 0 DC 0.9 AC 0.15
+vn Vn 0 DC 0.9
+
+ibias Ibias vss 5u
+
+Cload Vout 0 500f
+
+.nodeset v(vout)=0.6 v(vp)=0.6 v(vn)=0.6
+*.op
+*.dc Vp 0.7 1.1 1m
+*.tran 0.1u 20u 1n
+.ac dec 100 1 10Meg
+.save all
+
+.control
+	run
+	display
+	let vin = v(Vp)-v(Vn)
+	let gain = v(Vout)/vin
+*	plot v(Vout) v(vin)
+*	plot db(gain)
+	plot db(gain) xlog
+*	plot phase(gain) xlog
+.endc
+
+.end
+
+
+
+** opencircuitdesign pdks install
+.lib /foss/pdks/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+
+
+"Is Subcircuit" = YES
+**** end user architecture code
+**.ends
+
+* expanding   symbol:  sky130_tests/not.sym # of pins=2
+** sym_path: /foss/pdks/sky130A/libs.tech/xschem/sky130_tests/not.sym
+** sch_path: /foss/pdks/sky130A/libs.tech/xschem/sky130_tests/not.sch
+.subckt not y a VCCPIN VSSPIN     W_N=1 L_N=0.15 W_P=2 L_P=0.15
+*.opin y
+*.ipin a
+XM1 y a VSSPIN VSSPIN sky130_fd_pr__nfet_01v8 L=L_N W=W_N nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM2 y a VCCPIN VCCPIN sky130_fd_pr__pfet_01v8 L=L_P W=W_P nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+.ends
+
+.GLOBAL GND
+.end

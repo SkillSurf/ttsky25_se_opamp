@@ -1,0 +1,76 @@
+.include /foss/designs/cmos_ota_sky130/2-stage-Opamp/Opamp.spice
+.lib /foss/pdks/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+
+"
+.option temp=27
+.option gmin=1e-12
+.option method=gear
+.param VDD=1.8
+
+VDD vdd 0 DC {VDD}
+VSS vss 0 0
+
+VENABLE en 0 DC {VDD}
+
+VIN vp 0 SIN(0.6 0.1 5k)
+
+IBIAS ibias vss DC 5u
+
+RFB vn vout 1MEG
+
+Cload vout 0 500f
+
+x1 vdd en vp vn vout ibias vss Opamp
+.op
+.tran 0.1u 2m
+
+.control
+	run
+	set wr_singlescale
+	plot v(vp) v(vout)
+.endc
+
+.end
+"
+
+
+name=SPICE only_toplevel=false value="
+.option temp=27
+*.option gmin=1e-12
+.param VCC=1.8
+
+*vdd VDD 0 DC {VCC}
+*vss VSS 0 0
+
+*ven EN 0 DC{VCC}
+
+*vp Vp 0 DC 0
+*vn Vn 0 DC 0.9
+
+*vp Vp 0 DC 0.9 AC 0.15
+*vn Vn 0 DC 0.9 
+
+*ibias Ibias vss 5u
+
+*Cload Vout 0 500f
+
+*.nodeset v(vout)=0.6 v(vp)=0.6 v(vn)=0.6
+*.op
+*.dc Vp 0.7 1.1 1m
+*.tran 0.1u 20u 1n
+*.ac dec 100 1 10Meg
+.save all
+
+.control
+	run
+	display
+*	let vin = v(Vp)-v(Vn)
+*	let gain = v(Vout)/vin
+*	plot v(Vout) v(vin) 
+*	plot db(gain)
+	plot db(gain) xlog
+*	plot phase(gain) xlog
+.endc
+
+.end
+"
