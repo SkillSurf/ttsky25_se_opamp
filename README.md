@@ -18,7 +18,7 @@ The following figures show the schematic of the circuit and the layout in Klayou
 | Temperature range | 20° C - 50° C |
 | Input signal amplitude | $\lt 0.4$ $V_{pp}$ |
 | Input signal frequency | 1 - 10 kHz |
-| Input bias current | 5 \mu A |
+| Input bias current | 5 $\mu$ A |
 | Open-loop low-freq (DC) Gain | $\geq 60$ dB ($\geq 1000$)|
 | Gain bandwidth product GBW | $\geq 1$ MHz |
 | Phase margin PM | $\gt 60°$ |
