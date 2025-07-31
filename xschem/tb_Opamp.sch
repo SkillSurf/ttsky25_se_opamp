@@ -31,7 +31,7 @@ value="
 "
 spice_ignore=false}
 C {devices/code_shown.sym} -1060 -330 0 0 {name=SPICE1 only_toplevel=false value="
-.option temp=27
+*.option temp=20
 .option savecurrents
 .param VCC=1.8
 
@@ -58,18 +58,20 @@ vn Vn 0 DC 0.9 AC -0.001
 *.op
 *.dc Vp 0.7 1.1 1m
 *.tran 0.01u 100u 1n
-.ac dec 100 1 10Meg
+*.ac dec 100 1 10Meg
 .save all
 
 
 .control
 	run
+	foreach tempval 20 50
+		set temp = $tempval
+		ac dec 100 1 10Meg
+		let vin = v(vp)-v(vn)
+		let gain = v(Vout)/(v(vp)-v(vn))
+		plot db(gain) phase(gain)*180/pi xlog
+	end
 	display
-	let vin = v(vp)-v(vn)
-	let gain = v(Vout)/(v(vp)-v(vn))
-*	plot v(Vout) v(vp) v(vn)
-*	plot db(gain)
-	plot db(gain) phase(gain)*180/pi xlog
 write tb.raw
 .endc
 
@@ -93,4 +95,4 @@ C {devices/lab_pin.sym} -300 120 1 0 {name=p9 sig_type=std_logic lab=VDD}
 C {devices/lab_pin.sym} -300 180 3 0 {name=p10 sig_type=std_logic lab=Ibias}
 C {devices/lab_pin.sym} -320 -230 0 0 {name=p11 sig_type=std_logic lab=Ibias}
 C {devices/lab_pin.sym} 110 -250 0 1 {name=p1 sig_type=std_logic lab=Vout}
-C {/foss/designs/cmos-two-stage-opamp/xschem/Opamp.sym} -170 -240 0 0 {name=x1}
+C {/foss/designs/ttsky_se_opamp/xschem/Opamp.sym} -170 -240 0 0 {name=x1}

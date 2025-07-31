@@ -89,7 +89,7 @@ $$ \left(\frac{W}{L}\right)\_{1,2} = \frac{g_{m1}^2}{\mu_{0n} \cdot C_{oxn} \cdo
 
 Afterwards, we can calculate the W/L ratio of the to PMOS transistors of the differential pari using the relationship 
 
-$$ ICMR_{(+)} \leq V_{D1,min} * V_{thn,min}  $$
+$$ ICMR_{(+)} \leq V_{D1,min} * V_{thn,min}  $$ and 
 
 
 
