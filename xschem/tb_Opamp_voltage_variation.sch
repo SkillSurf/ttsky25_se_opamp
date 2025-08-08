@@ -22,9 +22,9 @@ lab=GND}
 N 0 -230 0 -210 {
 lab=GND}
 C {devices/code_shown.sym} -1060 -330 0 0 {name=SPICE1 only_toplevel=false value="
-*.option temp=27
+.option temp=27
 .option savecurrents
-.param VCC=1.8
+.param VCC=1.9
 
 .lib /foss/pdks/sky130A/libs.tech/ngspice/sky130.lib.spice tt
 
@@ -47,23 +47,17 @@ vn Vn 0 DC 0.9 AC -0.001
 
 *Cload Vout 0 500f
 
-*.nodeset v(vout)=0.6 v(vp)=0.6 v(vn)=0.6
 *.op
 *.dc Vp 0.7 1.1 1m
 *.tran 0.01u 100u 1n
-*.ac dec 100 1 10Meg
+.ac dec 100 1 10Meg
 .save all
-
 
 .control
 	run
-	foreach tempval 20 50
-		set temp = $tempval
-		ac dec 100 1 10Meg
-		let vin = v(vp)-v(vn)
-		let gain = v(Vout)/(v(vp)-v(vn))
-		plot db(gain) phase(gain)*180/pi xlog
-	end
+	let vin = v(vp)-v(vn)
+	let gain = v(Vout)/(v(vp)-v(vn))
+	plot db(gain) phase(gain)*180/pi xlog 
 	display
 write tb.raw
 .endc
@@ -80,7 +74,7 @@ C {devices/lab_pin.sym} -320 -250 0 0 {name=p7 sig_type=std_logic lab=Vn}
 C {devices/lab_pin.sym} -320 -270 0 0 {name=p8 sig_type=std_logic lab=Vp}
 C {devices/capa.sym} 110 -170 0 0 {name=C1
 m=1
-value=25p
+value=50p
 footprint=1206
 device="ceramic capacitor"}
 C {devices/isource.sym} -200 -30 0 0 {name=I0 value=5u}

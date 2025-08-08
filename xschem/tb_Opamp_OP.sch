@@ -38,17 +38,17 @@ C {devices/code_shown.sym} -1060 -330 0 0 {name=SPICE1 only_toplevel=false value
 *vp Vp 0 DC 0
 *vn Vn 0 DC 0.9
 
-vp Vp 0 DC 0.9 AC 0.001
-vn Vn 0 DC 0.9 AC -0.001
-*vp Vp 0 SIN(0.9 0.001 100k)
-*vn Vn 0 SIN(0.9 -0.001 100k)
+*vp Vp 0 DC 0.9 AC 0.001
+*vn Vn 0 DC 0.9 AC -0.001
+vp Vp 0 SIN(0.9 0.001 100k)
+vn Vn 0 SIN(0.9 -0.001 100k)
 
 *ibias Ibias vss 5u
 
 *Cload Vout 0 500f
 
 *.nodeset v(vout)=0.6 v(vp)=0.6 v(vn)=0.6
-*.op
+.op
 *.dc Vp 0.7 1.1 1m
 *.tran 0.01u 100u 1n
 *.ac dec 100 1 10Meg
@@ -57,13 +57,6 @@ vn Vn 0 DC 0.9 AC -0.001
 
 .control
 	run
-	foreach tempval 20 50
-		set temp = $tempval
-		ac dec 100 1 10Meg
-		let vin = v(vp)-v(vn)
-		let gain = v(Vout)/(v(vp)-v(vn))
-		plot db(gain) phase(gain)*180/pi xlog
-	end
 	display
 write tb.raw
 .endc
@@ -73,7 +66,6 @@ write tb.raw
 C {devices/vsource.sym} -310 -30 0 0 {name=V1 value=1.8 savecurrent=false}
 C {devices/gnd.sym} -310 0 0 0 {name=l1 lab=GND}
 C {devices/lab_pin.sym} -310 -60 1 0 {name=p2 sig_type=std_logic lab=VDD}
-C {devices/lab_pin.sym} -320 -210 0 0 {name=p3 sig_type=std_logic lab=VDD}
 C {devices/lab_pin.sym} -20 -270 0 1 {name=p4 sig_type=std_logic lab=VDD}
 C {devices/gnd.sym} 0 -120 0 0 {name=l2 lab=GND}
 C {devices/lab_pin.sym} -320 -250 0 0 {name=p7 sig_type=std_logic lab=Vn}
@@ -89,3 +81,4 @@ C {devices/lab_pin.sym} -200 0 3 0 {name=p10 sig_type=std_logic lab=Ibias}
 C {devices/lab_pin.sym} -320 -230 0 0 {name=p11 sig_type=std_logic lab=Ibias}
 C {devices/lab_pin.sym} 110 -250 0 1 {name=p1 sig_type=std_logic lab=Vout}
 C {/foss/designs/ttsky_se_opamp/xschem/Opamp.sym} -170 -240 0 0 {name=x1}
+C {devices/lab_pin.sym} -320 -210 0 0 {name=p3 sig_type=std_logic lab=VDD}

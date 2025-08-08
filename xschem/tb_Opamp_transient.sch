@@ -38,10 +38,10 @@ C {devices/code_shown.sym} -1060 -330 0 0 {name=SPICE1 only_toplevel=false value
 *vp Vp 0 DC 0
 *vn Vn 0 DC 0.9
 
-vp Vp 0 DC 0.9 AC 0.001
-vn Vn 0 DC 0.9 AC -0.001
-*vp Vp 0 SIN(0.9 0.001 100k)
-*vn Vn 0 SIN(0.9 -0.001 100k)
+*vp Vp 0 DC 0.9 AC 0.001
+*vn Vn 0 DC 0.9 AC -0.001
+vp Vp 0 SIN(0.9 0.001 100k)
+vn Vn 0 SIN(0.9 -0.001 100k)
 
 *ibias Ibias vss 5u
 
@@ -50,20 +50,14 @@ vn Vn 0 DC 0.9 AC -0.001
 *.nodeset v(vout)=0.6 v(vp)=0.6 v(vn)=0.6
 *.op
 *.dc Vp 0.7 1.1 1m
-*.tran 0.01u 100u 1n
+.tran 0.01u 100u 1n
 *.ac dec 100 1 10Meg
 .save all
 
 
 .control
 	run
-	foreach tempval 20 50
-		set temp = $tempval
-		ac dec 100 1 10Meg
-		let vin = v(vp)-v(vn)
-		let gain = v(Vout)/(v(vp)-v(vn))
-		plot db(gain) phase(gain)*180/pi xlog
-	end
+	plot v(vp) v(vn) v(Vout)
 	display
 write tb.raw
 .endc
