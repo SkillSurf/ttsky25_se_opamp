@@ -21,7 +21,7 @@ XM5 Itail Ibias net4 VSS sky130_fd_pr__nfet_01v8 L=1 W=4 nf=4 ad='int((nf+1)/2) 
 + ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=8 m=8
 XM7 Vout Ibias net3 VSS sky130_fd_pr__nfet_01v8 L=1 W=4 nf=4 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)'
 + ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=11 m=11
-XM8 Ibias Ibias VSS VSS sky130_fd_pr__nfet_01v8 L=1 W=4 nf=4 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)'
+XM8 Ibias Ibias net5 VSS sky130_fd_pr__nfet_01v8 L=1 W=4 nf=4 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)'
 + ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
 XC2 net2 Vout sky130_fd_pr__cap_mim_m3_1 W=30 L=75 MF=2 m=2
 Rz net2 Vouts1 sky130_fd_pr__res_generic_l1 W=0.04 L=60 m=1
@@ -29,6 +29,8 @@ XM9 net4 EN VSS VSS sky130_fd_pr__nfet_01v8 L=1 W=4 nf=4 ad='int((nf+1)/2) * W/n
 + ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=6 m=6
 XM10 net3 EN VSS VSS sky130_fd_pr__nfet_01v8 L=1 W=4 nf=4 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)'
 + ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=11 m=11
+XM11 net5 EN VSS VSS sky130_fd_pr__nfet_01v8 L=1 W=4 nf=4 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=4 m=4
 **** begin user architecture code
 "Is Subcircuit" = YES
 **** end user architecture code
