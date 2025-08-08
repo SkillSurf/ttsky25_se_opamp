@@ -115,10 +115,24 @@ N -0 290 -0 320 {
 lab=VSS}
 N 440 290 440 320 {
 lab=VSS}
-N -250 210 -250 380 {
+N -250 210 -250 260 {
+lab=#net5}
+N -250 320 -250 380 {
 lab=VSS}
-N -250 180 -250 210 {
+N -250 290 -250 320 {
 lab=VSS}
+N -260 180 -250 180 {
+lab=VSS}
+N -260 180 -260 380 {
+lab=VSS}
+N -260 380 -250 380 {
+lab=VSS}
+N -210 290 -200 290 {
+lab=EN}
+N -200 290 -200 340 {
+lab=EN}
+N -200 340 -80 340 {
+lab=EN}
 C {sky130_fd_pr/nfet_01v8.sym} 130 30 0 1 {name=M2
 L=1
 W=4
@@ -268,6 +282,20 @@ L=1
 W=4
 nf=4
 mult=11
+ad="'int((nf+1)/2) * W/nf * 0.29'" 
+pd="'2*int((nf+1)/2) * (W/nf + 0.29)'"
+as="'int((nf+2)/2) * W/nf * 0.29'" 
+ps="'2*int((nf+2)/2) * (W/nf + 0.29)'"
+nrd="'0.29 / W'" nrs="'0.29 / W'"
+sa=0 sb=0 sd=0
+model=nfet_01v8
+spiceprefix=X
+}
+C {sky130_fd_pr/nfet_01v8.sym} -230 290 0 1 {name=M11
+L=1
+W=4
+nf=4
+mult=4
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
 pd="'2*int((nf+1)/2) * (W/nf + 0.29)'"
 as="'int((nf+2)/2) * W/nf * 0.29'" 
