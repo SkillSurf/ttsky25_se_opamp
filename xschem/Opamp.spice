@@ -30,7 +30,7 @@ XM9 net4 EN VSS VSS sky130_fd_pr__nfet_01v8 L=1 W=4 nf=4 ad='int((nf+1)/2) * W/n
 XM10 net3 EN VSS VSS sky130_fd_pr__nfet_01v8 L=1 W=4 nf=4 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)'
 + ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=11 m=11
 XM11 net5 EN VSS VSS sky130_fd_pr__nfet_01v8 L=1 W=4 nf=4 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)'
-+ ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=4 m=4
++ ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=6 m=6
 **** begin user architecture code
 "Is Subcircuit" = YES
 **** end user architecture code
