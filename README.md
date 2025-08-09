@@ -103,6 +103,10 @@ $$ ICMR_{(+)} \leq V_{D1,min} * V_{thn,min}  $$ and
 </p>
 
 <p align="center">
-<img src = "./assets/Operating_point.png" width = "500" height = "500">
+<img src = "./assets/Operating_point_en_high.png" width = "500" height = "500">
+</p>
+
+<p align="center">
+<img src = "./assets/Operating_point_en_low.png" width = "500" height = "500">
 </p>
 
