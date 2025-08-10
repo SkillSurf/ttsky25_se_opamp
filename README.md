@@ -60,7 +60,7 @@ More specifically, we need to calculate the W/L ratios of all the transistors, m
 There are several **Rules of thumb** which we can use as starting points along with the equations for calculating different parameters (derivations of these equations can be found from textbooks). 
 - $C_{miller}$ $\geq 0.22$ $C_{load}$ for phase margin to be greater than 60. 
 - $V_{D,sat}$ $\gt 100$ mV
-- $g_{m6}$  $\geq $g_{m1}$$
+- $$ g_{m6} \geq g_{m1} $$
 - W/L ratio of PMOS in the differential pair is roughly 2.5 times the W/L ratio of NMOS (this is not a hard rule!)
 
 
@@ -117,12 +117,12 @@ Following simulations are required to be performed to test if the design meet al
 Following figures shows the basic simulation testbenches for open-loop and closed-loop simulations seperately. Individual testbenches are derived from these for veryfying each parameter. 
 
 <p align="center">
-    <img src="./assets/Testbench-open_loop.png" width = "400" height = "400"><br>
+    <img src="./assets/Testbench-open_loop.png" width = "600" height = "500"><br>
     <em>Figure 2: Open-loop testbench</em>
 </p>
 
 <p align="center">
-    <img src="./assets/Testbench-closed_loop.png" width = "400" height = "400"><br>
+    <img src="./assets/Testbench-closed_loop.png" width = "600" height = "500"><br>
     <em>Figure 3: Closed-loop testbench</em>
 </p>
 
@@ -132,26 +132,26 @@ Following sub sections illustrates the simulation results for each key parameter
 ### Operating Point Analysis
 
 <p align="center">
-    <img src="./assets/Operating_point_en_high.png" width = "600" height = "500"><br>
+    <img src="./assets/Operating_point_en_high.png" width = "500" height = "500"><br>
     <em>Figure 4: Operating point when enabled</em>
 </p>
 
 <p align="center">
-    <img src="./assets/Operating_point_en_low.png" width = "600" height = "500"><br>
+    <img src="./assets/Operating_point_en_low.png" width = "500" height = "500"><br>
     <em>Figure 5: Operating point when disabled</em>
 </p>
 
 ### Transient Analysis
 
 <p align="center">
-    <img src="./assets/transient.png" width = "600" height = "500"><br>
+    <img src="./assets/transient.png" width = "500" height = "500"><br>
     <em>Figure 5: transient analysis for a input sine wave</em>
 </p>
 
 ### Open loop DC gain, Phase Margin and GBW
 
 <p align="center">
-    <img src="./assets/Gain_GBW_PM.png" width = "600" height = "500"><br>
+    <img src="./assets/Gain_GBW_PM.png" width = "500" height = "500"><br>
     <em>Figure 6: Open-loop DC gain with GBW and phase margin for input freq of 10kHz</em>
 </p>
 
@@ -185,12 +185,12 @@ The slewrate was plotted by giving a positive pulse and a negative pulse respect
 PVT variation simulations were performed to verify the proper functioning of the design for variations in process corners, supply voltage and temperature within given ranges. Below two plots illustrates the open-loop gain, phase margin and GBW results when tested for fast-fast (ff) and slow-slow (ss) corners under process variations. Other parameters were similarly tested and verified for all three variations. 
 
 <p align="center">
-    <img src="./assets/FF_process_corners_met.png" width = "600" height = "500"><br>
+    <img src="./assets/FF_process_corners_met.png" width = "500" height = "500"><br>
     <em>Figure 9: Open-loop Gain for ff corners</em>
 </p>
 
 <p align="center">
-    <img src="./assets/SS_process_corners_met.png" width = "600" height = "500"><br>
+    <img src="./assets/SS_process_corners_met.png" width = "500" height = "500"><br>
     <em>Figure 10: Open-loop Gain for ss corners</em>
 </p>
 
