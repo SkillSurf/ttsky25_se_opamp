@@ -5,7 +5,8 @@ This guide provides a reference design for a single-ended op-amp circuit using t
 The following figures show the schematic of the circuit and the layout in Klayout.
 
 <p align="center">
-<img src = "./assets/Schematic.png" width = "500" height = "500">
+    <img src="./assets/Schematic.png" width = "500" height = "500"><br>
+    <em>Figure 1: Schematic</em>
 </p>
 
 ## Project Requirements
@@ -59,6 +60,7 @@ More specifically, we need to calculate the W/L ratios of all the transistors, m
 There are several **Rules of thumb** which we can use as starting points along with the equations for calculating different parameters (derivations of these equations can be found from textbooks). 
 - $C_{miller}$ $\geq 0.22$ $C_{load}$ for phase margin to be greater than 60. 
 - $V_{D,sat}$ $\gt 100$ mV
+- $g_{m6}$  $\geq $g_{m1}$$
 - W/L ratio of PMOS in the differential pair is roughly 2.5 times the W/L ratio of NMOS (this is not a hard rule!)
 
 
@@ -84,29 +86,117 @@ we can assume $g_{m1}$= 80 $\mu S.$
 
 With that know, we can calculate the W/L ratio for the two NMOS transistors in the differential pair. 
 
-$$ \left(\frac{W}{L}\right)\_{1,2} = \frac{g_{m1}^2}{\mu_{0n} \cdot C_{oxn} \cdot I_{5}} = 1.3 $$
+$$ \left(\frac{W}{L}\right)\_{1,2} = \frac{g_{m1}^2}{\mu_{0n} \cdot C_{oxn} \cdot I_{5}} $$
 
 
-Afterwards, we can calculate the W/L ratio of the to PMOS transistors of the differential pari using the relationship 
+Afterwards, we can calculate the W/L ratio of the to PMOS transistors of the differential pair using the relationship 
 
-$$ ICMR_{(+)} \leq V_{D1,min} * V_{thn,min}  $$ and 
+$$ ICMR_{(+)} \leq V_{D1,min} * V_{thn,min}  $$.
+
+Calculate the W/L ratio of M5 using the relation
+
+$$ ICMR_{(-)} \geq V_{GS1} * V_{D,5}  $$.
+
+Calculate the W/L ratios of M6 & M7 considering the current ratios in the two stages. Transconductance of M6 can be considered to be 10 times larger than that of M1 for a good gain. Transistor parameters of the transistors in the current mirror depends on the ratio of currents in each branch.
 
 
+## Simulations
 
+Following simulations are required to be performed to test if the design meet all the specifications:
+- Operating point analysis (both cases when EN = 0 & 1)
+- Transient analysis
+- Open loop DC gain
+- Phase margin & GBW
+- Quiescent current
+- Input offset
+- Slew rate (open-loop & closed-loop)
+- PVT variations (Stability and Corner Analysis)
+- Monte-Carlo Simulations
+ 
+### Simulation testbench 
+Following figures shows the basic simulation testbenches for open-loop and closed-loop simulations seperately. Individual testbenches are derived from these for veryfying each parameter. 
 
 <p align="center">
-<img src = "./assets/AC_analysis.png" width = "500" height = "500">
+  <span style="display:inline-block; text-align:center; margin: 10px;">
+    <img src="./assets/Testbench-open_loop.png" width="400"><br>
+    <em>Figure 2: Open-loop testbench</em>
+  </span>
+  <span style="display:inline-block; text-align:center; margin: 10px;">
+    <img src="./assets/Testbench-closed_loop.png" width="400"><br>
+    <em>Figure 3: Closed-loop testbench</em>
+  </span>
+</p>
+
+
+Following sub sections illustrates the simulation results for each key parameter. 
+
+### Operating Point Analysis
+
+<p align="center">
+    <img src="./assets/Operating_point_en_high.png" width = "500" height = "500"><br>
+    <em>Figure 4: Operating point when enabled</em>
 </p>
 
 <p align="center">
-<img src = "./assets/transient.png" width = "500" height = "500">
+    <img src="./assets/Operating_point_en_low.png" width = "500" height = "500"><br>
+    <em>Figure 5: Operating point when disabled</em>
+</p>
+
+### Transient Analysis
+
+<p align="center">
+    <img src="./assets/transient.png" width = "500" height = "500"><br>
+    <em>Figure 5: transient analysis for a input sine wave</em>
+</p>
+
+### Open loop DC gain, Phase Margin and GBW
+
+<p align="center">
+    <img src="./assets/Gain_GBW_PM.png" width = "500" height = "500"><br>
+    <em>Figure 6: Open-loop DC gain with GBW and phase margin for input freq of 10kHz</em>
+</p>
+
+
+### Slew rate (open-loop & closed-loop)
+
+The slewrate was plotted by giving a positive pulse and a negative pulse respectively to both open-loop and closed-loop scenarios and obtaining the derivative of $V_{out}$. Plots below illustrates the outputs for the four cases. 
+
+<p align="center">
+  <span style="display:inline-block; text-align:center; margin: 10px;">
+    <img src="./assets/openloop-slewrate-positive-9.08.png" width="400"><br>
+    <em>Figure 7: Open-loop slewrate for a positive pulse (9.08 V/us)</em>
+  </span>
+  <span style="display:inline-block; text-align:center; margin: 10px;">
+    <img src="./assets/openloop-slewrate-negative-1.3.png" width="400"><br>
+    <em>Figure 8: Open-loop slewrate for a negative pulse (1.3 V/us)</em>
+  </span>
+</p><br>
+
+<p align="center">
+  <span style="display:inline-block; text-align:center; margin: 10px;">
+    <img src="./assets/closedloop-slewrate-positive-5.8.png" width="400"><br>
+    <em>Figure 7: Closed-loop slewrate for a positive pulse (5.80 V/us)</em>
+  </span>
+  <span style="display:inline-block; text-align:center; margin: 10px;">
+    <img src="./assets/closedloop-slewrate-negative-1.3.png" width="400"><br>
+    <em>Figure 8: Closed-loop slewrate for a negative pulse (1.3 V/us)</em>
+  </span>
+</p>
+
+### PVT variations (Stability and Corner Analysis)
+
+PVT variation simulations were performed to verify the proper functioning of the design for variations in process corners, supply voltage and temperature within given ranges. Below two plots illustrates the open-loop gain, phase margin and GBW results when tested for fast-fast (ff) and slow-slow (ss) corners under process variations. Other parameters were similarly tested and verified for all three variations. 
+
+<p align="center">
+    <img src="./assets/FF_process_corners_met.png" width="400"><br>
+    <em>Figure 9: Open-loop Gain for ff corners</em>
 </p>
 
 <p align="center">
-<img src = "./assets/Operating_point_en_high.png" width = "500" height = "500">
+    <img src="./assets/SS_process_corners_met.png" width="400"><br>
+    <em>Figure 10: Open-loop Gain for ss corners</em>
 </p>
 
-<p align="center">
-<img src = "./assets/Operating_point_en_low.png" width = "500" height = "500">
-</p>
+### Monte-Carlo Simulations
+Monte-Carlo Simulations yet to be updated. 
 

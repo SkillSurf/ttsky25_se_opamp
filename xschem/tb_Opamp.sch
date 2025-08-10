@@ -21,33 +21,19 @@ N -20 -230 0 -230 {
 lab=GND}
 N 0 -230 0 -210 {
 lab=GND}
-C {devices/code_shown.sym} -1060 -330 0 0 {name=SPICE1 only_toplevel=false value="
+C {devices/code_shown.sym} -1060 -340 0 0 {name=SPICE1 only_toplevel=false value="
 *.option temp=27
 .option savecurrents
 .param VCC=1.8
 
 .lib /foss/pdks/sky130A/libs.tech/ngspice/sky130.lib.spice tt
 
-*.include /foss/designs/cmos_ota_sky130/2-stage-Opamp/Opamp.spice
-
-*vdd VDD 0 DC \{VCC\}
-*vss VSS 0 0
-
-*ven EN 0 DC\{VCC\}
-
-*vp Vp 0 DC 0
-*vn Vn 0 DC 0.9
 
 vp Vp 0 DC 0.9 AC 0.001
 vn Vn 0 DC 0.9 AC -0.001
 *vp Vp 0 SIN(0.9 0.001 100k)
 *vn Vn 0 SIN(0.9 -0.001 100k)
 
-*ibias Ibias vss 5u
-
-*Cload Vout 0 500f
-
-*.nodeset v(vout)=0.6 v(vp)=0.6 v(vn)=0.6
 *.op
 *.dc Vp 0.7 1.1 1m
 *.tran 0.01u 100u 1n
