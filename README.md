@@ -15,7 +15,7 @@ The following figures show the schematic of the circuit and the layout in Klayou
 | --- | --- |
 | Supply voltage (vdd) | 1.7 V - 1.9 V |
 | Nominal input common-mode voltage | (vdd/2 - 0.2V) - (vdd/2 + 0.2V) |
-| Output load $C_{L}$ | 30pF (capacitive) |
+| Output load $C_{L}$ | 25pF (capacitive) |
 | Temperature range | 20° C - 50° C |
 | Input signal amplitude | $\lt 0.4$ $V_{pp}$ |
 | Input signal frequency | 1 - 10 kHz |
