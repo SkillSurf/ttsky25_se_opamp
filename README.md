@@ -60,7 +60,6 @@ More specifically, we need to calculate the W/L ratios of all the transistors, m
 There are several **Rules of thumb** which we can use as starting points along with the equations for calculating different parameters (derivations of these equations can be found from textbooks). 
 - $C_{miller}$ $\geq 0.22$ $C_{load}$ for phase margin to be greater than 60. 
 - $V_{D,sat}$ $\gt 100$ mV
-- $$ g_{m6} \geq g_{m1} $$
 - W/L ratio of PMOS in the differential pair is roughly 2.5 times the W/L ratio of NMOS (this is not a hard rule!)
 
 
