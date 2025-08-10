@@ -91,11 +91,11 @@ $$ \left(\frac{W}{L}\right)\_{1,2} = \frac{g_{m1}^2}{\mu_{0n} \cdot C_{oxn} \cdo
 
 Afterwards, we can calculate the W/L ratio of the to PMOS transistors of the differential pair using the relationship 
 
-$$ ICMR_{(+)} \leq V_{D1,min} * V_{thn,min}  $$.
+$ ICMR_{(+)} \leq V_{D1,min} * V_{thn,min} $
 
 Calculate the W/L ratio of M5 using the relation
 
-$$ ICMR_{(-)} \geq V_{GS1} * V_{D,5}  $$.
+$ ICMR_{(-)} \geq V_{GS1} * V_{D,5}  $
 
 Calculate the W/L ratios of M6 & M7 considering the current ratios in the two stages. Transconductance of M6 can be considered to be 10 times larger than that of M1 for a good gain. Transistor parameters of the transistors in the current mirror depends on the ratio of currents in each branch.
 
@@ -118,11 +118,11 @@ Following figures shows the basic simulation testbenches for open-loop and close
 
 <p align="center">
   <span style="display:inline-block; text-align:center; margin: 10px;">
-    <img src="./assets/Testbench-open_loop.png" width="400"><br>
+    <img src="./assets/Testbench-open_loop.png" width="200"><br>
     <em>Figure 2: Open-loop testbench</em>
   </span>
   <span style="display:inline-block; text-align:center; margin: 10px;">
-    <img src="./assets/Testbench-closed_loop.png" width="400"><br>
+    <img src="./assets/Testbench-closed_loop.png" width="200"><br>
     <em>Figure 3: Closed-loop testbench</em>
   </span>
 </p>
@@ -133,26 +133,26 @@ Following sub sections illustrates the simulation results for each key parameter
 ### Operating Point Analysis
 
 <p align="center">
-    <img src="./assets/Operating_point_en_high.png" width = "500" height = "500"><br>
+    <img src="./assets/Operating_point_en_high.png" width = "600" height = "500"><br>
     <em>Figure 4: Operating point when enabled</em>
 </p>
 
 <p align="center">
-    <img src="./assets/Operating_point_en_low.png" width = "500" height = "500"><br>
+    <img src="./assets/Operating_point_en_low.png" width = "600" height = "500"><br>
     <em>Figure 5: Operating point when disabled</em>
 </p>
 
 ### Transient Analysis
 
 <p align="center">
-    <img src="./assets/transient.png" width = "500" height = "500"><br>
+    <img src="./assets/transient.png" width = "600" height = "500"><br>
     <em>Figure 5: transient analysis for a input sine wave</em>
 </p>
 
 ### Open loop DC gain, Phase Margin and GBW
 
 <p align="center">
-    <img src="./assets/Gain_GBW_PM.png" width = "500" height = "500"><br>
+    <img src="./assets/Gain_GBW_PM.png" width = "600" height = "500"><br>
     <em>Figure 6: Open-loop DC gain with GBW and phase margin for input freq of 10kHz</em>
 </p>
 
@@ -163,22 +163,22 @@ The slewrate was plotted by giving a positive pulse and a negative pulse respect
 
 <p align="center">
   <span style="display:inline-block; text-align:center; margin: 10px;">
-    <img src="./assets/openloop-slewrate-positive-9.08.png" width="400"><br>
+    <img src="./assets/openloop-slewrate-positive-9.08.png" width="200"><br>
     <em>Figure 7: Open-loop slewrate for a positive pulse (9.08 V/us)</em>
   </span>
   <span style="display:inline-block; text-align:center; margin: 10px;">
-    <img src="./assets/openloop-slewrate-negative-1.3.png" width="400"><br>
+    <img src="./assets/openloop-slewrate-negative-1.3.png" width="200"><br>
     <em>Figure 8: Open-loop slewrate for a negative pulse (1.3 V/us)</em>
   </span>
 </p><br>
 
 <p align="center">
   <span style="display:inline-block; text-align:center; margin: 10px;">
-    <img src="./assets/closedloop-slewrate-positive-5.8.png" width="400"><br>
+    <img src="./assets/closedloop-slewrate-positive-5.8.png" width="200"><br>
     <em>Figure 7: Closed-loop slewrate for a positive pulse (5.80 V/us)</em>
   </span>
   <span style="display:inline-block; text-align:center; margin: 10px;">
-    <img src="./assets/closedloop-slewrate-negative-1.3.png" width="400"><br>
+    <img src="./assets/closedloop-slewrate-negative-1.3.png" width="200"><br>
     <em>Figure 8: Closed-loop slewrate for a negative pulse (1.3 V/us)</em>
   </span>
 </p>
@@ -188,12 +188,12 @@ The slewrate was plotted by giving a positive pulse and a negative pulse respect
 PVT variation simulations were performed to verify the proper functioning of the design for variations in process corners, supply voltage and temperature within given ranges. Below two plots illustrates the open-loop gain, phase margin and GBW results when tested for fast-fast (ff) and slow-slow (ss) corners under process variations. Other parameters were similarly tested and verified for all three variations. 
 
 <p align="center">
-    <img src="./assets/FF_process_corners_met.png" width="400"><br>
+    <img src="./assets/FF_process_corners_met.png" width = "600" height = "500"><br>
     <em>Figure 9: Open-loop Gain for ff corners</em>
 </p>
 
 <p align="center">
-    <img src="./assets/SS_process_corners_met.png" width="400"><br>
+    <img src="./assets/SS_process_corners_met.png" width = "600" height = "500"><br>
     <em>Figure 10: Open-loop Gain for ss corners</em>
 </p>
 
