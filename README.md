@@ -1,4 +1,4 @@
-# A Low-power Single-ended Operational Amplifier using Sky130 PDK
+# A Low-power Single-ended Operational Amplifier using Sky130 PDK - Template Design
 
 This guide provides a reference design for a single-ended op-amp circuit using the SKY130 PDK, intended to function as a non-inverting unity-gain buffer for low-frequency analog signals (1–10 kHz). 
 
